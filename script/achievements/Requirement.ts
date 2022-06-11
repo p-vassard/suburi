@@ -3,13 +3,15 @@ export abstract class Requirement {
     hint: string;
     count: number;
     type: string;
+    score: number;
     achieved: boolean;
 
-    protected constructor(name: string, hint: string, count: number, type: string) {
+    protected constructor(name: string, hint: string, count: number, type: string, score: number) {
         this.name = name;
         this.hint = hint;
         this.count = count;
         this.type = type;
+        this.score = score;
     }
 
     checkIfAchieved(): boolean

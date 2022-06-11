@@ -2,13 +2,15 @@ import {Achievements} from "../achievements/Achievements.js";
 import {Requirement} from "../achievements/Requirement.js";
 
 export function displayAchievements() {
-    const list = Achievements.get().list;
+    const achievements = Achievements.get();
+    const list = achievements.list;
+    const score = achievements.getScore();
 
     let html = '<table class="achievements"><tbody>';
     for (const i in list) {
         const req: Requirement = list[i];
         html += `<tr>
-        <td class="achievement-name">${req.name}<p>${req.hint}</p></td>
+        <td class="achievement-name">${req.name} ${displayScore(req.score)}<p>${req.hint}</p></td>
         <td class="achievement-progress">
                     <div class="progress"><div class="progress-bar ${req.checkIfAchieved() ? 'bg-success' : ''}"
                         role="progressbar"
@@ -22,4 +24,9 @@ export function displayAchievements() {
     html += '</tbody></table>'
 
     $('.achievements-list').html(html);
+    $('#achievementsModal .modal-title').html(`Trophées ⸱ Total : ${displayScore(score)}`);
+}
+
+function displayScore(score) {
+    return `<span class="score">${score}&nbsp;pt${score > 1 ? 's' : ''}</span>`;
 }

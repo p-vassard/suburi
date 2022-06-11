@@ -107,3 +107,17 @@
 .toast-container {
   z-index: 99999999;
 }
+
+.score {
+  font-family: monospace;
+  font-size: 75%;
+  font-weight: bold;
+  color: grey;
+  text-shadow: darkgrey 1px 1px 1px;
+  word-spacing: -0.75ch;
+  vertical-align: text-bottom;
+
+  @at-root .modal-title #{&} {
+    font-size: 100%;
+  }
+}

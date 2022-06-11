@@ -5,8 +5,8 @@ import {Statistics} from "../statistics/Statistics.js";
 export class HitRequirement extends Requirement {
     hitType: string;
 
-    constructor(hitType: string, name: string, hint: string, count: number) {
-        super(name, hint, count, RequirementType.Hit);
+    constructor(hitType: string, name: string, hint: string, count: number, score: number) {
+        super(name, hint, count, RequirementType.Hit, score);
         this.hitType = hitType;
     }
 
