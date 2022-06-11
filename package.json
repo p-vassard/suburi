@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@types/bootstrap": "^5.1.12",
+    "@types/jquery": "^3.5.14"
+  },
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

@@ -1,0 +1,37 @@
+$grey-1: #fdfdfd;
+
+#current-suburi, #suburi-list {
+  padding-top: 5vw;
+}
+
+.toggle-sound-wrapper {
+  visibility: hidden;
+}
+
+.pulser-wrapper {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.instructions-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress {
+  height: 50%;
+}
+
+.instructions {
+  text-align: center;
+  font-size: 300%;
+  font-family: 'Trade Winds', cursive;
+}
+
+.tips {
+  text-align: center;
+  font-size: 150%;
+  font-family: 'Trade Winds', cursive;
+}

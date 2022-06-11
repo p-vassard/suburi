@@ -1,0 +1,18 @@
+.achievements-list {
+  max-height: 60vh;
+  overflow-y: scroll;
+}
+
+.achievement-name {
+  width: 75%;
+
+  p {
+    font-size: 75%;
+    font-style: italic;
+  }
+}
+
+.achievement-progress {
+  font-size: 75%;
+  text-align: center;
+}

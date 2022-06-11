@@ -1,0 +1,109 @@
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+@include media-breakpoint-down(lg) {
+  .pulser-wrapper {
+    min-height: 25vh;
+    max-height: 25vh;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .instructions-wrapper {
+    min-height: 20vh;
+    max-height: 20vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .progress-wrapper {
+    min-height: 5vh;
+    max-height: 5vh;
+    overflow: hidden;
+  }
+  .tips-wrapper {
+    min-height: 15vh;
+    max-height: 15vh;
+    overflow: hidden;
+  }
+  .suburi-list {
+    min-height: 25vh;
+    max-height: 25vh;
+    overflow: hidden;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .pulser-wrapper {
+    min-height: 25vh;
+    max-height: 25vh;
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .instructions-wrapper {
+    min-height: 30vh;
+    max-height: 30vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .progress-wrapper {
+    min-height: 10vh;
+    max-height: 10vh;
+  }
+  .tips-wrapper {
+    min-height: 20vh;
+    max-height: 20vh;
+  }
+}
+
+.navbar-brand {
+  font-family: 'Trade Winds', cursive;
+  font-size: 150%;
+}
+
+.container.index {
+  min-height: 1000px;
+}
+
+.has-logo {
+  position: relative;
+}
+
+.logo-wrapper {
+  opacity: 0.1;
+  position: absolute;
+  top: 2vh;
+  width: 100%;
+
+  img {
+    max-width: 50%;
+    @include media-breakpoint-down(md) {
+      max-width: 75%;
+    }
+    @include media-breakpoint-down(sm) {
+      max-width: 90%;
+    }
+  }
+}
+
+#home-text {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  display: none;
+}
+
+.toast-container {
+  z-index: 99999999;
+}
