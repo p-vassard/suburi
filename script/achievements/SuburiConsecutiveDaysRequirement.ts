@@ -6,8 +6,8 @@ export class SuburiConsecutiveDaysRequirement extends Requirement
 {
     suburiCount: number;
 
-    constructor(suburiCount: number, name: string, hint: string, count: number) {
-        super(name, hint, count, RequirementType.Time);
+    constructor(suburiCount: number, name: string, hint: string, count: number, score: number) {
+        super(name, hint, count, RequirementType.Time, score);
         this.suburiCount = suburiCount;
     }
 

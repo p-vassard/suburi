@@ -5,8 +5,8 @@ import {Statistics} from "../statistics/Statistics.js";
 export class TrainingRequirement extends Requirement {
     difficulty: number;
 
-    constructor(difficulty: number, name: string, hint: string, count: number) {
-        super(name, hint, count, RequirementType.Training);
+    constructor(difficulty: number, name: string, hint: string, count: number, score: number) {
+        super(name, hint, count, RequirementType.Training, score);
         this.difficulty = difficulty;
     }
 

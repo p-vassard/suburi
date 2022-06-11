@@ -96,22 +96,36 @@
 function createSuburiList()
 {
   $list = [
-    'HayaSuburi' => 'Haya Suburi',
-    'JogeBuri' => 'Joge Buri',
-    'NanameBuri' => 'Naname Buri',
-    'NihoZenshinKotaiMen' => 'Niho Zenshin Kotai Men',
-    'Shomen' => 'Shomen',
-    'Kote' => 'Kote',
-    'Do' => 'Do',
-    'ZenshinKotaiMen' => 'Zenshin Kotai Men',
-    'Shifts' => 'Déplacements',
-    'Hits' => 'Frappes aléatoires'
+    'Échauffements' => [
+      'Shifts' => 'Déplacements',
+      'JogeBuri' => 'Joge Buri',
+      'NanameBuri' => 'Naname Buri',
+    ],
+    'Men' => [
+      'Shomen' => 'Shomen',
+      'ZenshinKotaiMen' => 'Zenshin Kotai Men',
+      'NihoZenshinKotaiMen' => 'Niho Zenshin Kotai Men',
+      'MenHirakiAshi' => 'Men - Hiraki Ashi',
+      'HayaSuburi' => 'Haya Suburi',
+    ],
+    'Kote' => [
+      'Kote' => 'Kote',
+    ],
+    'Do' => [
+      'Do' => 'Do',
+    ],
+    'Divers' => [
+      'Hits' => 'Frappes aléatoires'
+    ]
   ];
-  asort($list);
 
   $result = '';
-  foreach ($list as $key => $value) {
-    $result .= "<option value='$key'>$value</option>";
+  foreach ($list as $cat => $suburi) {
+    $result .= "<optgroup label='$cat'>";
+    foreach($suburi as $key => $value) {
+      $result .= "<option value='$key'>$value</option>";
+    }
+    $result .= "</optgroup>";
   }
 
   return $result;

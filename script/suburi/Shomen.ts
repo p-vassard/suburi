@@ -34,10 +34,11 @@ export class Shomen extends AbstractSuburi {
     executeOne(params: SuburiParamsInterface): Promise<void> {
         return new Promise<void>(resolve => {
             (async () => {
-                const randomDurationBeforeMen = (random(0, (this.difficulty - 1) * 3) === 0)
+                const maxRandom = this.getRandomFactorFromDifficulty();
+                const randomDurationBeforeMen = (random(0, maxRandom) === 0)
                     ? random(1000, this.randomDurationsBeforeMen[this.difficulty])
                     : 0;
-                const randomDurationBetweenMenAndKamae = (random(0, (this.difficulty - 1) * 3) === 0)
+                const randomDurationBetweenMenAndKamae = (random(0, maxRandom) === 0)
                     ? random(1000, this.randomDurationsBetweenMenAndKamae[this.difficulty])
                     : 0;
 

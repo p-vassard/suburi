@@ -60,7 +60,8 @@ export class Shifts extends AbstractSuburi
                 setInstruction(this.order[(params.suburiNumber - 1) % this.order.length]);
                 pulse(this.intervals[this.difficulty]);
                 Sound.get().playSound();
-                const randomDuration = (random(0, (this.difficulty - 1) * 3) === 0)
+                const maxRandom = this.getRandomFactorFromDifficulty();
+                const randomDuration = (random(0, maxRandom) === 0)
                     ? random(1000, this.randomDurations[this.difficulty])
                     : 0;
                 await asyncWait(this.intervals[this.difficulty] + randomDuration - 200);

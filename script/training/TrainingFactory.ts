@@ -13,7 +13,9 @@ import {Do} from "../suburi/Do.js";
 import {AbstractSuburi} from "../suburi/AbstractSuburi.js";
 import {Hits} from "../suburi/Hits.js";
 import {Tsuki} from "../suburi/Tsuki.js";
+import {MenHirakiAshi} from "../suburi/MenHirakiAshi.js";
 
+// noinspection JSUnusedLocalSymbols
 const difficulty1 = [
     'JogeBuri',
     'Shifts',
@@ -24,6 +26,7 @@ const difficulty1 = [
     'Hits'
 ]
 
+// noinspection JSUnusedLocalSymbols
 const difficulty2 = [
     'HayaSuburi',
     'JogeBuri',
@@ -35,9 +38,11 @@ const difficulty2 = [
     'Do',
     'Tsuki',
     'ZenshinKotaiMen',
-    'Hits'
+    'Hits',
+    'MenHirakiAshi'
 ]
 
+// noinspection JSUnusedLocalSymbols
 const difficulty3 = [
     'HayaSuburi',
     'JogeBuri',
@@ -48,7 +53,8 @@ const difficulty3 = [
     'Do',
     'Tsuki',
     'ZenshinKotaiMen',
-    'Hits'
+    'Hits',
+    'MenHirakiAshi'
 ]
 
 const isStarter = [
@@ -56,6 +62,7 @@ const isStarter = [
     'Shifts',
 ]
 
+// noinspection JSUnusedLocalSymbols
 const isFinisher = [
     'HayaSuburi',
     'NihoZenshinKotaiMen',
@@ -126,5 +133,6 @@ function createSuburi(name: string, difficulty: number): AbstractSuburi {
         case 'ZenshinKotaiMen': return new ZenshinKotaiMen(difficulty);
         case 'Hits': return new Hits(difficulty);
         case 'Tsuki': return new Tsuki(difficulty);
+        case 'MenHirakiAshi': return new MenHirakiAshi(difficulty);
     }
 }

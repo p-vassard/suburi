@@ -21,7 +21,8 @@ export class ZenshinKotaiMen extends AbstractSuburi {
     executeOne(params: SuburiParamsInterface): Promise<void> {
         return new Promise<void>(resolve => {
             (async () => {
-                const randomDuration = (random(0, (this.difficulty - 1) * 3) === 0)
+                const maxRandom = this.getRandomFactorFromDifficulty();
+                const randomDuration = (random(0, maxRandom) === 0)
                     ? random(1000, this.randomDurations[this.difficulty])
                     : 0;
                 const duration = this.intervals[this.difficulty] + randomDuration;
