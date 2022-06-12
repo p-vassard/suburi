@@ -6,6 +6,7 @@ import {createToast} from "../display/Toast.js";
 import {SuburiConsecutiveDaysRequirement} from "./SuburiConsecutiveDaysRequirement.js";
 import {Save} from "../misc/Save.js";
 import {TrainingRequirement} from "./TrainingRequirement.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class Achievements {
     private static instance: Achievements;
@@ -60,15 +61,15 @@ export class Achievements {
         this.list.push(new HitRequirement(HitTypes.TSUKI, "A une ou deux mains ?", "Faire 10 000 Tsuki", 10000, 30));
         this.list.push(new HitRequirement(HitTypes.TSUKI, "Bouge pas, je vise", "Faire 100 000 Tsuki", 100000, 100));
 
-        this.list.push(new TrainingRequirement(1, "On commence tous par là", "Faire 10 entraînements < 1er dan", 10, 5));
-        this.list.push(new TrainingRequirement(1, "Les pieds chauffent un peu non ?", "Faire 100 entraînements < 1er dan", 100, 25));
-        this.list.push(new TrainingRequirement(1, "Il faut vraiment attendre 3 ans ?", "Faire 1000 entraînements < 1er dan", 1000, 50));
-        this.list.push(new TrainingRequirement(2, "On s'y met sérieusement", "Faire 10 entraînements 1er à 2ème dan", 10, 10));
-        this.list.push(new TrainingRequirement(2, "C'est une histoire sans fin", "Faire 100 entraînements 1er à 2ème dan", 100, 35));
-        this.list.push(new TrainingRequirement(2, "Est-ce une addiction ?", "Faire 1000 entraînements 1er à 2ème dan", 1000, 100));
-        this.list.push(new TrainingRequirement(3, "Est-ce vraiment plus dur ?", "Faire 10 entraînements > 3ème dan", 10, 15));
-        this.list.push(new TrainingRequirement(3, "Les bras de Saitama", "Faire 100 entraînements > 3ème dan", 100, 50));
-        this.list.push(new TrainingRequirement(3, "Ces entraînements sont vraiemnt trop faciles...", "Faire 1000 entraînements > 3ème dan", 1000, 200));
+        this.list.push(new TrainingRequirement(new Difficulty(1), "On commence tous par là", "Faire 10 entraînements < 1er dan", 10, 5));
+        this.list.push(new TrainingRequirement(new Difficulty(1), "Les pieds chauffent un peu non ?", "Faire 100 entraînements < 1er dan", 100, 25));
+        this.list.push(new TrainingRequirement(new Difficulty(1), "Il faut vraiment attendre 3 ans ?", "Faire 1000 entraînements < 1er dan", 1000, 50));
+        this.list.push(new TrainingRequirement(new Difficulty(2), "On s'y met sérieusement", "Faire 10 entraînements 1er à 2ème dan", 10, 10));
+        this.list.push(new TrainingRequirement(new Difficulty(2), "C'est une histoire sans fin", "Faire 100 entraînements 1er à 2ème dan", 100, 35));
+        this.list.push(new TrainingRequirement(new Difficulty(2), "Est-ce une addiction ?", "Faire 1000 entraînements 1er à 2ème dan", 1000, 100));
+        this.list.push(new TrainingRequirement(new Difficulty(3), "Est-ce vraiment plus dur ?", "Faire 10 entraînements > 3ème dan", 10, 15));
+        this.list.push(new TrainingRequirement(new Difficulty(3), "Les bras de Saitama", "Faire 100 entraînements > 3ème dan", 100, 50));
+        this.list.push(new TrainingRequirement(new Difficulty(3), "Ces entraînements sont vraiemnt trop faciles...", "Faire 1000 entraînements > 3ème dan", 1000, 200));
 
         this.list.push(new SuburiConsecutiveDaysRequirement(100, "J'aime m'entraîner à taper", "Faire 100 suburi 7 jours de suite", 7, 15));
         this.list.push(new SuburiConsecutiveDaysRequirement(100, "J'aime taper", "Faire 100 suburi 30 jours de suite", 30, 75));

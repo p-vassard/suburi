@@ -1,10 +1,12 @@
+import {Difficulty} from "../training/Difficulty.js";
+
 export abstract class AbstractSuburi
 {
     name: string;
     summary: string;
-    difficulty: number;
+    difficulty: Difficulty;
 
-    public constructor(difficulty: number) {
+    public constructor(difficulty: Difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -12,7 +14,7 @@ export abstract class AbstractSuburi
     abstract getTips(): Array<string>;
 
     getRandomFactorFromDifficulty(factor: number = 1): number {
-        switch (this.difficulty) {
+        switch (this.difficulty.difficulty) {
             case 1:
                 return Math.floor(50 * factor);
             case 2:

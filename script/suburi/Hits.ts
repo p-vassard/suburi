@@ -2,11 +2,12 @@ import {pulse} from "../display/Pulser.js";
 import {AbstractSuburi} from "./AbstractSuburi.js";
 import {Statistics} from "../statistics/Statistics.js";
 import {HitTypes} from "../statistics/HitTypes.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class Hits extends AbstractSuburi {
     name = 'Frappes aléatoires';
     summary = "Frappez ce qui est indiqué puis revenez en Kamae";
-    difficulty: number;
+    difficulty: Difficulty;
 
     intervalsBeforeHit = {
         1: 2000,
@@ -49,11 +50,11 @@ export class Hits extends AbstractSuburi {
     executeOne(params: SuburiParamsInterface): Promise<void> {
         return new Promise<void>(resolve => {
             (async () => {
-                const randomDurationBeforeHit = (random(0, (this.difficulty - 1) * 3) === 0)
-                    ? random(1000, this.randomDurationsBeforeHit[this.difficulty])
+                const randomDurationBeforeHit = (random(0, (this.difficulty.difficulty - 1) * 3) === 0) // TODO
+                    ? random(1000, this.randomDurationsBeforeHit[this.difficulty.difficulty])
                     : 0;
-                const randomDurationBetweenHitAndKamae = (random(0, (this.difficulty - 1) * 3) === 0)
-                    ? random(1000, this.randomDurationsBetweenHitAndKamae[this.difficulty])
+                const randomDurationBetweenHitAndKamae = (random(0, (this.difficulty.difficulty - 1) * 3) === 0)
+                    ? random(1000, this.randomDurationsBetweenHitAndKamae[this.difficulty.difficulty])
                     : 0;
 
                 const hit = this.chooseHit();
@@ -62,11 +63,11 @@ export class Hits extends AbstractSuburi {
                 Statistics.get().addToCount([Statistics.keys[hit + 'Count'], Statistics.keys.currentDaySuburiCount, Statistics.getSuburiDifficultyKey(this.difficulty)]);
                 pulse(1000);
                 Sound.get().playSound();
-                await asyncWait(this.intervalsBeforeHit[this.difficulty] + randomDurationBeforeHit);
+                await asyncWait(this.intervalsBeforeHit[this.difficulty.difficulty] + randomDurationBeforeHit);
                 setInstruction('Kamae')
-                pulse(this.intervalsBeforeHit[this.difficulty]);
+                pulse(this.intervalsBeforeHit[this.difficulty.difficulty]);
                 Sound.get().playSound(Sound.SOUND2);
-                await asyncWait(this.intervalsBetweenHitAndKamae[this.difficulty] + randomDurationBetweenHitAndKamae);
+                await asyncWait(this.intervalsBetweenHitAndKamae[this.difficulty.difficulty] + randomDurationBetweenHitAndKamae);
                 resolve();
             })()
         });

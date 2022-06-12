@@ -1,12 +1,13 @@
 import {pulse} from "../display/Pulser.js";
 import {AbstractSuburi} from "./AbstractSuburi.js";
 import {Statistics} from "../statistics/Statistics.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class JogeBuri extends AbstractSuburi
 {
     name = 'Joge Buri';
     summary = "Frapper souplement à la hauteur du genou de haut en bas, en grand";
-    difficulty: number;
+    difficulty: Difficulty;
 
     intervals = {
         1: 1500,
@@ -19,7 +20,7 @@ export class JogeBuri extends AbstractSuburi
             (async () => {
                 setInstruction(getJapanNumber((params.suburiNumber - 1) % 10 + 1));
                 Statistics.get().addToCount([Statistics.keys.currentDaySuburiCount, Statistics.getSuburiDifficultyKey(this.difficulty)]);
-                const interval = this.intervals[this.difficulty];
+                const interval = this.intervals[this.difficulty.difficulty];
                 pulse(interval);
                 Sound.get().playSound();
                 await asyncWait(interval);

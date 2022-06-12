@@ -1,11 +1,12 @@
 import {pulse} from "../display/Pulser.js";
 import {AbstractSuburi} from "./AbstractSuburi.js";
 import {Statistics} from "../statistics/Statistics.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class Shomen extends AbstractSuburi {
     name = 'Shomen';
     summary = "Frappez Men puis revenez en Kamae";
-    difficulty: number;
+    difficulty: Difficulty;
 
     shout = 'Men !';
     statistic = Statistics.keys.menCount;
@@ -36,21 +37,21 @@ export class Shomen extends AbstractSuburi {
             (async () => {
                 const maxRandom = this.getRandomFactorFromDifficulty();
                 const randomDurationBeforeMen = (random(0, maxRandom) === 0)
-                    ? random(1000, this.randomDurationsBeforeMen[this.difficulty])
+                    ? random(1000, this.randomDurationsBeforeMen[this.difficulty.difficulty])
                     : 0;
                 const randomDurationBetweenMenAndKamae = (random(0, maxRandom) === 0)
-                    ? random(1000, this.randomDurationsBetweenMenAndKamae[this.difficulty])
+                    ? random(1000, this.randomDurationsBetweenMenAndKamae[this.difficulty.difficulty])
                     : 0;
 
                 setInstruction(this.shout)
                 Statistics.get().addToCount([this.statistic, Statistics.keys.currentDaySuburiCount, Statistics.getSuburiDifficultyKey(this.difficulty)]);
                 pulse(1000);
                 Sound.get().playSound();
-                await asyncWait(this.intervalsBeforeMen[this.difficulty] + randomDurationBeforeMen);
+                await asyncWait(this.intervalsBeforeMen[this.difficulty.difficulty] + randomDurationBeforeMen);
                 setInstruction('Kamae')
-                pulse(this.intervalsBeforeMen[this.difficulty]);
+                pulse(this.intervalsBeforeMen[this.difficulty.difficulty]);
                 Sound.get().playSound(Sound.SOUND2);
-                await asyncWait(this.intervalsBetweenMenAndKamae[this.difficulty] + randomDurationBetweenMenAndKamae);
+                await asyncWait(this.intervalsBetweenMenAndKamae[this.difficulty.difficulty] + randomDurationBetweenMenAndKamae);
                 resolve();
             })()
         });

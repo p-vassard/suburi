@@ -1,6 +1,8 @@
 import {Achievements} from "../achievements/Achievements.js";
 import {RequirementType} from "../achievements/RequirementType.js";
 import {Save} from "../misc/Save.js";
+import {getVersion} from "../misc/Version.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class Statistics
 {
@@ -83,6 +85,8 @@ export class Statistics
     consecutiveDays: number = 0;
     lastSeen: Date = new Date();
 
+    version: string = getVersion();
+
     addToCount(names: string[], count: number = 1) {
         for(const i in names)
         {
@@ -92,7 +96,7 @@ export class Statistics
             const category = Statistics.category[name];
             Achievements.get().verify(category);
 
-            if (category === RequirementType.Hit) { // TODO : filter to specify condition
+            if (category === RequirementType.Hit) {
                 if (this.currentDaySuburiCount === 100) {
                     this.consecutiveDays100++;
                     this.maxConsecutiveDays100 = this.consecutiveDays100 > this.maxConsecutiveDays100
@@ -117,15 +121,15 @@ export class Statistics
         Save.save();
     }
 
-    static getSuburiDifficultyKey(difficulty: number) {
+    static getSuburiDifficultyKey(difficulty: Difficulty) {
         return Statistics.getDifficultyKey(difficulty) + 'SuburiCount';
     }
-    static getTrainingDifficultyKey(difficulty: number) {
+    static getTrainingDifficultyKey(difficulty: Difficulty) {
         return Statistics.getDifficultyKey(difficulty) + 'TrainingCount';
     }
 
-    static getDifficultyKey(difficulty: number) {
-        switch(difficulty) {
+    static getDifficultyKey(difficulty: Difficulty) {
+        switch(difficulty.difficulty) {
             case 1: return 'easy';
             case 2: return 'medium';
             case 3: return 'hard';

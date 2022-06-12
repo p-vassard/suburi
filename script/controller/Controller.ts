@@ -4,6 +4,7 @@ import {Save} from "../misc/Save.js";
 import {displayAchievements} from "../display/DisplayAchievements.js";
 import {Statistics} from "../statistics/Statistics.js";
 import {Training} from "../training/Training.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 $(function () {
     Save.load();
@@ -26,7 +27,7 @@ $(function () {
         currentTraining = undefined;
         if (tabId === 'create-training-tab') {
             currentTraining = createTraining(
-                Number($('#difficulty').val()),
+                new Difficulty(Number($('#difficulty').val())),
                 Number($('#totalAmount').val()),
                 ($('#pauseDuration').val() as number) * 1000,
                 $('#displayTips').is(":checked")
@@ -37,7 +38,7 @@ $(function () {
 
         if (tabId === 'select-suburi-tab') {
             currentTraining = createSingleSuburi(
-                Number($('#suburi-difficulty').val()),
+                new Difficulty(Number($('#suburi-difficulty').val())),
                 true,
                 Number($('#suburi-quantity').val()),
                 String($('#suburi-selection').val()),

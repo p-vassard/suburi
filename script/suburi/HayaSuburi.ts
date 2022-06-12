@@ -1,11 +1,12 @@
 import {pulse} from "../display/Pulser.js";
 import {AbstractSuburi} from "./AbstractSuburi.js";
 import {Statistics} from "../statistics/Statistics.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class HayaSuburi extends AbstractSuburi {
     name = 'Haya Suburi';
     summary = "Armer en reculant, puis Men en avançant, rapidement";
-    difficulty: number;
+    difficulty: Difficulty;
 
     interval = {
         1: 1500,
@@ -23,7 +24,7 @@ export class HayaSuburi extends AbstractSuburi {
                 let interval2: number;
                 let interval3: number;
 
-                switch (this.difficulty) {
+                switch (this.difficulty.difficulty) {
                     case 1:
                         interval1 = this.interval[1];
                         interval2 = this.interval[1];

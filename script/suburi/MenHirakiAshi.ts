@@ -1,9 +1,10 @@
 import {ZenshinKotaiMen} from "./ZenshinKotaiMen.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class MenHirakiAshi extends ZenshinKotaiMen {
     name = 'Men Hiraki Ashi';
     summary = "Frappez Men en déplacement Hiraki Ashi";
-    difficulty: number;
+    difficulty: Difficulty;
 
     getTips(): Array<string> {
         return [

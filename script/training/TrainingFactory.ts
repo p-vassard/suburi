@@ -14,6 +14,7 @@ import {AbstractSuburi} from "../suburi/AbstractSuburi.js";
 import {Hits} from "../suburi/Hits.js";
 import {Tsuki} from "../suburi/Tsuki.js";
 import {MenHirakiAshi} from "../suburi/MenHirakiAshi.js";
+import {Difficulty} from "./Difficulty.js";
 
 // noinspection JSUnusedLocalSymbols
 const difficulty1 = [
@@ -69,7 +70,7 @@ const isFinisher = [
     'Hits'
 ]
 
-export function createTraining(difficulty, totalAmount, pauseDuration, displayTips): Training
+export function createTraining(difficulty: Difficulty, totalAmount: number, pauseDuration: number, displayTips: boolean): Training
 {
     let training = new Training(difficulty, totalAmount, pauseDuration, displayTips);
 
@@ -85,7 +86,7 @@ export function createTraining(difficulty, totalAmount, pauseDuration, displayTi
         case 1000: trainingCount = 10; suburiCount = 100; break;
     }
 
-    let availableSuburis = eval('difficulty' + difficulty);
+    let availableSuburis = eval('difficulty' + difficulty.difficulty);
     for (let i = 0 ; i < trainingCount ; i++) {
         let preferedOnes = [];
         if (i === 0) {
@@ -109,18 +110,17 @@ export function createTraining(difficulty, totalAmount, pauseDuration, displayTi
 }
 
 export function createSingleSuburi(
-    difficulty: number,
+    difficulty: Difficulty,
     displayTips: boolean,
     quantity: number,
     suburi: string): Training {
-
     let training = new Training(difficulty, quantity, 0, displayTips);
     training.suburiList.push(new Suburi(quantity, createSuburi(suburi, difficulty)));
 
     return training;
 }
 
-function createSuburi(name: string, difficulty: number): AbstractSuburi {
+function createSuburi(name: string, difficulty: Difficulty): AbstractSuburi {
     switch(name) {
         case 'HayaSuburi': return new HayaSuburi(difficulty);
         case 'JogeBuri': return new JogeBuri(difficulty);

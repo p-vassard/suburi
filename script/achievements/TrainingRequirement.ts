@@ -1,11 +1,12 @@
 import {Requirement} from "./Requirement.js";
 import {RequirementType} from "./RequirementType.js";
 import {Statistics} from "../statistics/Statistics.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 export class TrainingRequirement extends Requirement {
-    difficulty: number;
+    difficulty: Difficulty;
 
-    constructor(difficulty: number, name: string, hint: string, count: number, score: number) {
+    constructor(difficulty: Difficulty, name: string, hint: string, count: number, score: number) {
         super(name, hint, count, RequirementType.Training, score);
         this.difficulty = difficulty;
     }

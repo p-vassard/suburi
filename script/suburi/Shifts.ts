@@ -1,5 +1,6 @@
 import {pulse} from "../display/Pulser.js";
 import {AbstractSuburi} from "./AbstractSuburi.js";
+import {Difficulty} from "../training/Difficulty.js";
 
 const maxMoves = 2;
 const shiftTypes: { [key: string]: string } = {
@@ -19,7 +20,7 @@ export class Shifts extends AbstractSuburi
 {
     name = 'Déplacements';
     summary = "Déplacez-vous !";
-    difficulty: number;
+    difficulty: Difficulty;
 
     intervals = {
         1: 1750,
@@ -36,14 +37,14 @@ export class Shifts extends AbstractSuburi
 
     getRandomShift(): number
     {
-        switch (this.difficulty) {
+        switch (this.difficulty.difficulty) {
             case 1: return Math.floor(Math.random() * 4)
             case 2: return Math.floor(Math.random() * 8)
             case 3: return Math.floor(Math.random() * 8)
         }
     }
 
-    constructor(difficulty: number) {
+    constructor(difficulty: Difficulty) {
 
         super(difficulty);
 
@@ -71,13 +72,13 @@ export class Shifts extends AbstractSuburi
         return new Promise<void>(resolve => {
             (async () => {
                 setInstruction(this.order[(params.suburiNumber - 1) % this.order.length]);
-                pulse(this.intervals[this.difficulty]);
+                pulse(this.intervals[this.difficulty.difficulty]);
                 Sound.get().playSound();
                 const maxRandom = this.getRandomFactorFromDifficulty();
                 const randomDuration = (random(0, maxRandom) === 0)
-                    ? random(1000, this.randomDurations[this.difficulty])
+                    ? random(1000, this.randomDurations[this.difficulty.difficulty])
                     : 0;
-                await asyncWait(this.intervals[this.difficulty] + randomDuration - 200);
+                await asyncWait(this.intervals[this.difficulty.difficulty] + randomDuration - 200);
                 setInstruction('');
                 await asyncWait(200);
                 resolve();

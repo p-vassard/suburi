@@ -1,17 +1,18 @@
 import {Suburi} from "./Suburi.js";
 import {Statistics} from "../statistics/Statistics.js";
 import {showNavbar} from "../controller/Controller.js";
+import {Difficulty} from "./Difficulty.js";
 
 export class Training {
-    difficulty;
-    totalAmount;
-    pauseDuration;
-    displayTips;
+    difficulty: Difficulty;
+    totalAmount: number;
+    pauseDuration: number;
+    displayTips: boolean;
     suburiList: Array<Suburi> = [];
 
     currentSuburiNumber = 0;
 
-    constructor(difficulty, totalAmount, pauseDuration, displayTips) {
+    constructor(difficulty: Difficulty, totalAmount: number, pauseDuration: number, displayTips: boolean) {
         this.difficulty = difficulty;
         this.totalAmount = totalAmount;
         this.pauseDuration = pauseDuration;
@@ -46,7 +47,7 @@ export class Training {
                 showNavbar();
                 setTips("<button class='btn btn-primary' onclick='new bootstrap.Modal(document.getElementById(\"configModal\")).toggle()'>Recommencer !</button>");
 
-                switch(this.difficulty) {
+                switch(this.difficulty.difficulty) {
                     case 1: Sound.get().playSound(Sound.END2); break;
                     case 2: Sound.get().playSound(Sound.END3); break;
                     case 3: Sound.get().playSound(Sound.END4); break;
