@@ -3,13 +3,17 @@ import {AbstractSuburi} from "./AbstractSuburi.js";
 
 const maxMoves = 2;
 const shiftTypes: { [key: string]: string } = {
-    0: 'Migi (à droite)',
-    1: 'Hidari (à hauche)',
-    2: 'Mae (en avant)',
-    3: 'Ato (en arrière)'
+    0: '⇒<br />Migi',
+    1: '⇐<br />Hidari',
+    2: '⇑<br />Mae',
+    3: '⇓<br />Ato',
+    4: '⇖<br />Avant gauche',
+    5: '⇗<br />Avant droit',
+    6: '⇙<br />Arrière gauche',
+    7: '⇘<br />Arrière droit'
 }
-const maeAtoValues = {0: -1, 1: 1, 2: 0, 3: 0};
-const migiHidariValues = {0: 0, 1: 0, 2: -1, 3: 1};
+const maeAtoValues = {0: 0, 1: 0, 2: 1, 3: -1, 4: 1, 5: 1, 6: -1, 7: -1};
+const migiHidariValues = {0: 1, 1: -1, 2: 0, 3: 0, 4: -1, 5: 1, 6: -1, 7: 1};
 
 export class Shifts extends AbstractSuburi
 {
@@ -18,9 +22,9 @@ export class Shifts extends AbstractSuburi
     difficulty: number;
 
     intervals = {
-        1: 1500,
-        2: 1250,
-        3: 1000
+        1: 1750,
+        2: 1500,
+        3: 1250
     };
     randomDurations = {
         1: 0,
@@ -29,6 +33,15 @@ export class Shifts extends AbstractSuburi
     }
 
     order = [];
+
+    getRandomShift(): number
+    {
+        switch (this.difficulty) {
+            case 1: return Math.floor(Math.random() * 4)
+            case 2: return Math.floor(Math.random() * 8)
+            case 3: return Math.floor(Math.random() * 8)
+        }
+    }
 
     constructor(difficulty: number) {
 
@@ -39,7 +52,7 @@ export class Shifts extends AbstractSuburi
         for (let i = 0; i < 100; i++) {
             let flag = false;
             do {
-                const random = Math.floor(Math.random() * 4);
+                const random = this.getRandomShift();
 
                 if ((maeAtoCount + maeAtoValues[random]) >= (-1 * maxMoves)
                     && (maeAtoCount + maeAtoValues[random]) <= maxMoves
@@ -77,6 +90,8 @@ export class Shifts extends AbstractSuburi
             "Glissez bien les pieds",
             "Soyez toujours prêt",
             "Faites de grands pas",
+            "Levez légèrement le talon gauche",
+            "Ramenez rapidement le pied gauche",
         ]
     }
 }

@@ -119,5 +119,6 @@
 
   @at-root .modal-title #{&} {
     font-size: 100%;
+    vertical-align: middle;
   }
 }

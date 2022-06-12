@@ -70,7 +70,7 @@ export class Training {
         return new Promise<void>(resolve => {
             (async () => {
                 setInstruction(suburi.suburi.name);
-                await asyncWait(3000);
+                await asyncWait(5000);
                 resolve();
             })()
         });
